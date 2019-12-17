@@ -46,7 +46,7 @@ declare module '@chris-talman/trello'
 	{
 		id: string;
 	}
-	export interface CardsAddParameters
+	export interface CardsAddParameters extends RequestOptionsWrapper
 	{
 		name?: string;
 		desc?: string;
@@ -61,20 +61,20 @@ declare module '@chris-talman/trello'
 	{
 		id: string;
 	}
-	export interface CardsLabelsAddParameters
+	export interface CardsLabelsAddParameters extends RequestOptionsWrapper
 	{
 		cardId: string;
 		name?: string;
 		color: 'yellow' | 'purple' | 'blue' | 'red' | 'green' | 'orange' | 'black' | 'sky' | 'pink' | 'lime' | null;
 	}
 	// Request Options
-	export interface RequestOptions
-	{
-		useQueue?: boolean;
-	}
 	export interface RequestOptionsWrapper
 	{
 		options?: RequestOptions;
+	}
+	export interface RequestOptions
+	{
+		useQueue?: boolean;
 	}
 	// API Error
 	export class ApiError extends Error
