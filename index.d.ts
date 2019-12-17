@@ -63,6 +63,7 @@ declare module '@chris-talman/trello'
 	}
 	export interface CardsLabelsAddParameters
 	{
+		cardId: string;
 		name?: string;
 		color: 'yellow' | 'purple' | 'blue' | 'red' | 'green' | 'orange' | 'black' | 'sky' | 'pink' | 'lime' | null;
 	}
