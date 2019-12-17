@@ -17,6 +17,10 @@
 		"resolveJsonModule": true,
 		"allowSyntheticDefaultImports": true,
 		"strictNullChecks": true,
+		"paths":
+		{
+			"/": ["./"]
+		},
 		"watch": true
 	},
 	"include":
