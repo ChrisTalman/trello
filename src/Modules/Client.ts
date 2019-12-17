@@ -88,10 +88,10 @@ export class Client
 	private recordRateLimit(response: RequestResult<any>['response'])
 	{
 		const { headers } = response;
-		const rawLimit = headers.get('X-RATE-LIMIT-API-TOKEN-MAX');
-		const rawRemaining = headers.get('X-RATE-LIMIT-API-TOKEN-REMAINING');
-		const rawInterval = headers.get('X-RATE-LIMIT-API-TOKEN-INTERVAL-MS');
-		const rawServerTime = headers.get('X-Server-Time');
+		const rawLimit = headers.get('x-rate-limit-api-token-max');
+		const rawRemaining = headers.get('x-rate-limit-api-token-remaining');
+		const rawInterval = headers.get('x-rate-limit-api-token-interval-ms');
+		const rawServerTime = headers.get('x-server-time');
 		if (rawLimit === null || rawRemaining === null || rawInterval === null || rawServerTime === null) throw new Error('Rate limit headers not found');
 		const limit = parseInt(rawLimit);
 		const remaining = parseInt(rawRemaining);
