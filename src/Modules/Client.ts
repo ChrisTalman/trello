@@ -193,7 +193,7 @@ export class Client
 		if (queueItemIndex === -1) return;
 		this.queue.splice(queueItemIndex, 1);
 	};
-	public mandates = new Cards({client: this});
+	public cards = new Cards({client: this});
 };
 
 export class ScheduledRequest <GenericResultJson, GenericResult extends RequestResult<GenericResultJson> = RequestResult<GenericResultJson>>
