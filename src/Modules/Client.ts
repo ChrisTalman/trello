@@ -91,11 +91,14 @@ export class Client
 		const rawLimit = headers.get('x-rate-limit-api-token-max');
 		const rawRemaining = headers.get('x-rate-limit-api-token-remaining');
 		const rawInterval = headers.get('x-rate-limit-api-token-interval-ms');
-		const rawServerTime = headers.get('x-server-time');
-		if (rawLimit === null || rawRemaining === null || rawInterval === null || rawServerTime === null) throw new Error('Rate limit headers not found');
+		const rawDate = headers.get('date');
+		if (rawLimit === null || rawRemaining === null || rawInterval === null || rawDate === null)
+		{
+			throw new RateLimitHeadersNotFoundError({response});
+		};
 		const limit = parseInt(rawLimit);
 		const remaining = parseInt(rawRemaining);
-		const reset = parseInt(rawServerTime) + parseInt(rawInterval);
+		const reset = (new Date(rawDate)).valueOf() + parseInt(rawInterval);
 		const rateLimit: RateLimit =
 		{
 			limit,
@@ -285,5 +288,16 @@ export class RateLimitResetTimeout
 	{
 		this._complete = true;
 		this.callback();
+	};
+};
+
+export class RateLimitHeadersNotFoundError extends Error
+{
+	public readonly response: RequestResult<any>['response'];
+	constructor({response}: {response: RequestResult<any>['response']})
+	{
+		const message = 'Rate limit headers not found';
+		super(message);
+		this.response = response;
 	};
 };
